@@ -27,6 +27,14 @@ class LinkedList
     end
   end
 
+  def at index
+    return if index < 0 || index >= size
+
+    node = head
+    (1..index).each { node = node.next }
+    node
+  end
+
   private
     def update_tail node
       old_tail, @tail = tail, node
