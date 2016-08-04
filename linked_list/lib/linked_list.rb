@@ -35,6 +35,22 @@ class LinkedList
     node
   end
 
+  def remove index
+    at(index).tap do |node|
+      if node
+        if index == 0
+          @head = node.next 
+        else
+          parent = at(index-1)
+          parent.next = node.next
+          @tail = parent if node.next.nil?
+        end
+
+        @size -= 1
+      end
+    end
+  end
+
   private
     def update_tail node
       old_tail, @tail = tail, node
